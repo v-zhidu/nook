@@ -1,0 +1,47 @@
+{
+  "name": "fire",
+  "version": "1.0.0",
+  "description": "",
+  "author": "v-zhidu",
+  "license": "MIT",
+  "main": "./dist/esm/index.mjs",
+  "types": "./dist/esm/types/index.d.ts",
+  "type": "module",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "lint": "eslint -c configs/.eslintrc.cjs src/",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:esm": "rollup -c configs/rollup.config.esm.mjs && mv ./dist/esm/index.js ./dist/esm/index.mjs",
+    "build:cjs": "rollup -c configs/rollup.config.cjs.mjs"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.1",
+    "@types/mocha": "^10.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "glob": "^10.2.6",
+    "mocha": "^10.2.0",
+    "prettier": "^2.8.8",
+    "rollup": "^3.23.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/esm/types/index.d.ts",
+        "default": "./dist/esm/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/types/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      }
+    }
+  }
+}

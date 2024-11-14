@@ -1,0 +1,4 @@
+{
+  "prettier.configPath": ".vscode/.prettierrc",
+  "editor.tabSize": 2
+}
